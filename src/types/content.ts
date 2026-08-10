@@ -1,5 +1,6 @@
 export type Outlet = {
   id: string;
+  areaName?: string;
   name: string;
   address: string;
   postal: string;
@@ -11,6 +12,11 @@ export type Outlet = {
   reviewCount: number;
   amenities: string[];
   images: { src: string; caption: string }[];
+  placeId: string;
+  staffedCounter: {
+    weekdayHours: string;
+    weekendHours: string;
+  };
 };
 
 export type Review = {
@@ -21,6 +27,12 @@ export type Review = {
   outlet: string;
   timeAgo: string;
   body: string;
+  sourceUrl?: string;
+};
+
+export type GoogleSummary = {
+  rating: number;
+  total: number;
 };
 
 export type FranchiseStep = {

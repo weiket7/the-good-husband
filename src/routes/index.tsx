@@ -6,17 +6,22 @@ import { ReviewsSection } from '#/components/ReviewsSection'
 import { VendingSection } from '#/components/VendingSection'
 import { FranchiseSection } from '#/components/FranchiseSection'
 import { Footer } from '#/components/Footer'
+import { getGoogleReviews } from '#/server/googleReviews'
 
-export const Route = createFileRoute('/')({ component: Home })
+export const Route = createFileRoute('/')({
+  loader: () => getGoogleReviews(),
+  component: Home,
+})
 
 function Home() {
+  const { reviews, summary } = Route.useLoaderData()
   return (
     <div className="w-full bg-white">
       <Header />
       <main>
         <Hero />
         <LaundromatSection />
-        <ReviewsSection />
+        <ReviewsSection reviews={reviews} summary={summary} />
         <VendingSection />
         <FranchiseSection />
       </main>

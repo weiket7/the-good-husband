@@ -200,6 +200,10 @@ Loaders simplify your data fetching logic dramatically. Check out more informati
 
 
 
+# TODO
+
+- `GOOGLE_PLACES_API_KEY` (server-only secret, `wrangler secret put`) currently has no referrer/app restriction on Google Cloud Console. Fine as long as it stays server-side (`src/server/googleReviews.ts`) — do not reuse it in any client-side code. Consider IP-restricting to Cloudflare's egress ranges if tighter scoping is needed.
+
 # Learn More
 
 You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).

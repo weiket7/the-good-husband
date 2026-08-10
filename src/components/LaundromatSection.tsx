@@ -10,6 +10,7 @@ import {
   CoffeeIcon,
   ArmchairIcon,
   ExternalLinkIcon,
+  UserIcon,
 } from 'lucide-react';
 import { outlets } from '#/data/outlets';
 import { OutletMap } from './OutletMap';
@@ -136,7 +137,12 @@ export function LaundromatSection() {
               <div className="mt-5 flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <h3 className="font-display text-xl font-extrabold uppercase tracking-tight text-ink">
-                    {active.name}
+                    {active.areaName ?? active.name}
+                    {active.areaName && (
+                      <span className="ml-2 text-base font-semibold normal-case tracking-normal text-ink-muted">
+                        {active.name}
+                      </span>
+                    )}
                   </h3>
                   <p className="mt-1 flex items-start gap-2 text-sm text-ink-soft">
                     <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" aria-hidden="true" />
@@ -170,6 +176,26 @@ export function LaundromatSection() {
                   </div>
                 </div>
               </dl>
+
+              <div className="mt-4 rounded-2xl border border-slate-200 p-5">
+                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-ink">
+                  <UserIcon className="h-4 w-4 text-brand-500" aria-hidden="true" />
+                  Staffed collection / drop-off counter
+                </p>
+                <dl className="mt-4 space-y-2 text-sm">
+                  <div className="flex items-center justify-between">
+                    <dt className="text-ink-soft">Monday to Friday</dt>
+                    <dd className="font-semibold text-ink">{active.staffedCounter.weekdayHours}</dd>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <dt className="text-ink-soft">Saturday &amp; Sunday</dt>
+                    <dd className="font-semibold text-ink">{active.staffedCounter.weekendHours}</dd>
+                  </div>
+                </dl>
+                <p className="mt-4 text-xs text-ink-muted">
+                  Unstaffed on public holidays — self-service machines remain open 24/7.
+                </p>
+              </div>
 
               <ul className="mt-4 flex flex-wrap gap-2">
                 {active.amenities.map((amenity) => (

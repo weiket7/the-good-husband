@@ -60,11 +60,4 @@ export const reviews: Review[] = [
 export const googleSummary = {
   rating: 4.9,
   total: 522,
-  distribution: [
-    { stars: 5, percent: 88 },
-    { stars: 4, percent: 9 },
-    { stars: 3, percent: 2 },
-    { stars: 2, percent: 1 },
-    { stars: 1, percent: 0 },
-  ],
 };

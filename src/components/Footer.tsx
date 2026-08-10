@@ -32,7 +32,7 @@ const siteMap = [
 ];
 
 const socials = [
-  { label: 'Instagram', icon: InstagramIcon, href: 'https://instagram.com' },
+  { label: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/_thegoodhusbandwash.sg/' },
   { label: 'Facebook', icon: FacebookIcon, href: 'https://facebook.com' },
   { label: 'TikTok', icon: MusicIcon, href: 'https://tiktok.com' },
   { label: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com' },

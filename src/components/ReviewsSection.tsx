@@ -1,5 +1,5 @@
 import { StarIcon, CheckCircle2Icon } from 'lucide-react';
-import { reviews, googleSummary } from '#/data/reviews';
+import type { GoogleSummary, Review } from '#/types/content';
 import { SectionHeading } from './SectionHeading';
 
 function Stars({ rating }: { rating: number }) {
@@ -16,7 +16,7 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-export function ReviewsSection() {
+export function ReviewsSection({ reviews, summary }: { reviews: Review[]; summary: GoogleSummary }) {
   return (
     <section id="reviews" className="w-full bg-slate-50 py-20 sm:py-28">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
@@ -30,26 +30,15 @@ export function ReviewsSection() {
 
             <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-6">
               <div className="flex items-center gap-4">
-                <span className="font-display text-5xl font-extrabold text-ink">{googleSummary.rating}</span>
+                <span className="font-display text-5xl font-extrabold text-ink">{summary.rating}</span>
                 <div>
                   <Stars rating={5} />
-                  <p className="mt-1 text-sm text-ink-muted">{googleSummary.total} Google reviews</p>
+                  <p className="mt-1 text-sm text-ink-muted">{summary.total} Google reviews</p>
                 </div>
               </div>
-              <ul className="mt-6 space-y-2">
-                {googleSummary.distribution.map((row) => (
-                  <li key={row.stars} className="flex items-center gap-3">
-                    <span className="w-8 text-xs font-semibold text-ink-muted">{row.stars}★</span>
-                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
-                      <span className="block h-full rounded-full bg-brand-500" style={{ width: `${row.percent}%` }} />
-                    </span>
-                    <span className="w-9 text-right text-xs font-semibold text-ink-muted">{row.percent}%</span>
-                  </li>
-                ))}
-              </ul>
               <p className="mt-6 flex items-center gap-2 text-xs font-semibold text-ink-muted">
                 <CheckCircle2Icon className="h-4 w-4 text-brand-500" aria-hidden="true" />
-                Synced from Google Reviews · updated hourly
+                Synced from Google Reviews · updated daily
               </p>
             </div>
           </div>
@@ -71,11 +60,29 @@ export function ReviewsSection() {
                 <div className="mt-4">
                   <Stars rating={review.rating} />
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{review.body}</p>
+                <p className="mt-3 line-clamp-5 text-sm leading-relaxed text-ink-soft">{review.body}</p>
+                {review.body.length > 220 && review.sourceUrl && (
+                  <a
+                    href={review.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="mt-1 text-xs font-semibold text-brand-500 hover:underline"
+                  >
+                    Read more on Google
+                  </a>
+                )}
               </li>
             ))}
           </ul>
         </div>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=The+Good+Husband+Laundromats+Singapore"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="mt-8 block text-center text-xs font-semibold text-ink-muted underline underline-offset-2"
+        >
+          Reviews from Google
+        </a>
       </div>
     </section>
   );
