@@ -1,0 +1,66 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #1c1c1e;
+}
+.font-display {
+  font-family: 'Archivo', system-ui, sans-serif;
+}
+/* Leaflet surface tuning */
+.leaflet-container {
+  background: #eef4f7;
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  color: #6b7280;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(16, 42, 58, 0.18);
+}
+.leaflet-popup-content {
+  margin: 14px 16px;
+}
+.gh-pin {
+  display: grid;
+  place-items: center;
+}
+.gh-pin span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #16a6e4;
+  border: 3px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(22, 166, 228, 0.5);
+  color: #ffffff;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+}
+.gh-pin--active span {
+  background: #16191c;
+  box-shadow: 0 0 0 8px rgba(22, 166, 228, 0.22);
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
