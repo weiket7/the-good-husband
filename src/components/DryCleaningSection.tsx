@@ -6,7 +6,7 @@ const PRICE_LIST_PDF = '/the-good-husband-dry-cleaning-prices.pdf';
 
 export function DryCleaningSection() {
   return (
-    <section id="dry-cleaning" className="w-full bg-white py-20 sm:py-28">
+    <section id="dry-cleaning" className="w-full bg-slate-50 py-20 sm:py-28">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="Dry cleaning"

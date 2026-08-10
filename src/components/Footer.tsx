@@ -1,4 +1,4 @@
-import { InstagramIcon, FacebookIcon, MusicIcon, LinkedinIcon, MailIcon, PhoneIcon } from 'lucide-react';
+import { InstagramIcon, MailIcon } from 'lucide-react';
 import { BRAND, LOGO_URL } from '#/data/brand';
 import { outlets } from '#/data/outlets';
 
@@ -33,9 +33,6 @@ const siteMap = [
 
 const socials = [
   { label: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/_thegoodhusbandwash.sg/' },
-  { label: 'Facebook', icon: FacebookIcon, href: 'https://facebook.com' },
-  { label: 'TikTok', icon: MusicIcon, href: 'https://tiktok.com' },
-  { label: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com' },
 ];
 
 export function Footer() {
@@ -66,13 +63,6 @@ export function Footer() {
               >
                 <MailIcon className="h-4 w-4 text-brand-400" aria-hidden="true" />
                 {BRAND.email}
-              </a>
-              <a
-                href={`tel:${BRAND.phone.replace(/\s/g, '')}`}
-                className="flex items-center gap-2 font-semibold text-white transition-colors hover:text-brand-400"
-              >
-                <PhoneIcon className="h-4 w-4 text-brand-400" aria-hidden="true" />
-                {BRAND.phone}
               </a>
             </div>
             <ul className="mt-6 flex gap-3">

@@ -48,7 +48,7 @@ export function Header() {
           </span>
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-8 lg:ml-auto lg:flex">
           {links.map((link) => (
             <a
               key={link.href}
@@ -61,15 +61,6 @@ export function Header() {
             </a>
           ))}
         </nav>
-
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href="#franchise-form"
-            className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand-600"
-          >
-            Franchise with us
-          </a>
-        </div>
 
         <button
           type="button"
@@ -96,13 +87,6 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <a
-            href="#franchise-form"
-            onClick={() => setOpen(false)}
-            className="mt-3 block rounded-full bg-brand-500 px-5 py-3 text-center text-sm font-bold text-white"
-          >
-            Franchise with us
-          </a>
         </div>
       )}
     </header>

@@ -18,7 +18,7 @@ function Stars({ rating }: { rating: number }) {
 
 export function ReviewsSection({ reviews, summary }: { reviews: Review[]; summary: GoogleSummary }) {
   return (
-    <section id="reviews" className="w-full bg-slate-50 py-20 sm:py-28">
+    <section id="reviews" className="w-full bg-white py-20 sm:py-28">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-start">
           <div>
