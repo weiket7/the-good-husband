@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { MenuIcon, XIcon, PhoneIcon } from 'lucide-react';
+import { MenuIcon, XIcon } from 'lucide-react';
 import { LOGO_URL } from '#/data/brand';
 
 const links = [
   { label: 'Laundromats', href: '#laundromats' },
+  { label: 'Dry Cleaning', href: '#dry-cleaning' },
   { label: 'Vending', href: '#vending' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'Franchise', href: '#franchise' },
@@ -62,15 +63,6 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href="tel:+6560000000"
-            className={`flex items-center gap-2 text-sm font-semibold transition-colors hover:text-brand-500 ${
-              scrolled ? 'text-ink-soft' : 'text-white/90'
-            }`}
-          >
-            <PhoneIcon className="h-4 w-4" aria-hidden="true" />
-            +65 6000 0000
-          </a>
           <a
             href="#franchise-form"
             className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand-600"

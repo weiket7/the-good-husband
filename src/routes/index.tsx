@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Header } from '#/components/Header'
 import { Hero } from '#/components/Hero'
 import { LaundromatSection } from '#/components/LaundromatSection'
+import { DryCleaningSection } from '#/components/DryCleaningSection'
 import { ReviewsSection } from '#/components/ReviewsSection'
 import { VendingSection } from '#/components/VendingSection'
 import { FranchiseSection } from '#/components/FranchiseSection'
@@ -21,6 +22,7 @@ function Home() {
       <main>
         <Hero />
         <LaundromatSection />
+        <DryCleaningSection />
         <ReviewsSection reviews={reviews} summary={summary} />
         <VendingSection />
         <FranchiseSection />
