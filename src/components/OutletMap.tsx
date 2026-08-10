@@ -7,6 +7,7 @@ type Props = {
   outlets: Outlet[];
   activeId: string;
   onSelect: (id: string) => void;
+  className?: string;
 };
 
 function pinIcon(index: number, active: boolean) {
@@ -27,12 +28,17 @@ function FlyTo({ lat, lng }: { lat: number; lng: number }) {
   return null;
 }
 
-export function OutletMap({ outlets, activeId, onSelect }: Props) {
+export function OutletMap({
+  outlets,
+  activeId,
+  onSelect,
+  className = 'h-[380px] w-full overflow-hidden rounded-3xl border border-slate-200 lg:h-full lg:min-h-[560px]',
+}: Props) {
   const center = useMemo<[number, number]>(() => [1.3521, 103.8298], []);
   const active = outlets.find((o) => o.id === activeId) ?? outlets[0];
 
   return (
-    <div className="h-[380px] w-full overflow-hidden rounded-3xl border border-slate-200 lg:h-full lg:min-h-[560px]">
+    <div className={className}>
       <MapContainer
         center={center}
         zoom={11.5}

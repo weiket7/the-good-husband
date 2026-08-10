@@ -44,7 +44,7 @@ export function ReviewsSection({ reviews, summary }: { reviews: Review[]; summar
           </div>
 
           <ul className="grid gap-4 sm:grid-cols-2">
-            {reviews.map((review) => (
+            {reviews.slice(0, 6).map((review) => (
               <li key={review.id} className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6">
                 <div className="flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-display text-sm font-extrabold text-brand-700">

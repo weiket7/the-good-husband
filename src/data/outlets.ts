@@ -6,6 +6,11 @@ const OUTLET_B = '/12999a44-1384-4380-a76e-9e76b31c0c5c.jpg';
 const OUTLET_C = '/68c0f65f-08fd-48ce-8c0a-5d82077a5d11.jpg';
 const VENDING = '/4e0e0712-e477-46fc-98aa-e2f21401a5fb.jpg';
 
+const KOMO_IMAGES = Array.from({ length: 10 }, (_, i) => ({
+  src: `/komo-${i + 1}.jpg`,
+  caption: 'Komo Shoppes outlet',
+}));
+
 export const outlets: Outlet[] = [
   {
     id: 'komo-shoppes',
@@ -20,11 +25,7 @@ export const outlets: Outlet[] = [
     rating: 4.9,
     reviewCount: 214,
     amenities: ['Free Wi-Fi', 'F&B vending', 'Massage chairs', 'Wheelchair access'],
-    images: [
-      { src: OUTLET_A, caption: 'Extra-large 18kg washer bank' },
-      { src: HERO, caption: 'Late-night shopfront and lounge' },
-      { src: VENDING, caption: 'In-house F&B vending wall' },
-    ],
+    images: KOMO_IMAGES,
     placeId: 'ChIJpWku_X892jERrP6uti9n1Hw',
     staffedCounter: { weekdayHours: '10am – 9pm', weekendHours: '10am – 3pm' },
   },

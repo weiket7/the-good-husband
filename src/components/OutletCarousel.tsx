@@ -27,27 +27,26 @@ export function OutletCarousel({ outlet }: { outlet: Outlet }) {
         </AnimatePresence>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-ink/80 to-transparent p-4">
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-4">
         <p className="text-sm font-semibold text-white">{current.caption}</p>
-        <div className="flex shrink-0 gap-2">
-          <button
-            type="button"
-            onClick={() => go(-1)}
-            aria-label="Previous photo"
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/90 text-ink transition-colors hover:bg-white"
-          >
-            <ChevronLeftIcon className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            onClick={() => go(1)}
-            aria-label="Next photo"
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/90 text-ink transition-colors hover:bg-white"
-          >
-            <ChevronRightIcon className="h-5 w-5" />
-          </button>
-        </div>
       </div>
+
+      <button
+        type="button"
+        onClick={() => go(-1)}
+        aria-label="Previous photo"
+        className="absolute left-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink transition-colors hover:bg-white"
+      >
+        <ChevronLeftIcon className="h-5 w-5" />
+      </button>
+      <button
+        type="button"
+        onClick={() => go(1)}
+        aria-label="Next photo"
+        className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink transition-colors hover:bg-white"
+      >
+        <ChevronRightIcon className="h-5 w-5" />
+      </button>
     </div>
   );
 }

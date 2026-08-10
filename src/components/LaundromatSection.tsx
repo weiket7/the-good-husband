@@ -100,17 +100,13 @@ export function LaundromatSection() {
           {geoState === 'denied' && 'Location unavailable — browse all three outlets below.'}
         </p>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1.05fr_1fr]">
-          <ClientOnly
-            fallback={
-              <div className="h-[380px] w-full animate-pulse rounded-3xl border border-slate-200 bg-slate-100 lg:h-full lg:min-h-[560px]" />
-            }
-          >
-            <OutletMap outlets={outlets} activeId={activeId} onSelect={setActiveId} />
-          </ClientOnly>
-
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar" role="tablist" aria-label="Outlets">
+        <article className="mt-10 rounded-3xl border border-slate-200 p-5 sm:p-6">
+          <div className="grid gap-4 lg:grid-cols-[160px_1fr]">
+            <div
+              className="flex gap-2 overflow-x-auto pb-1 no-scrollbar lg:flex-col lg:overflow-visible lg:pb-0"
+              role="tablist"
+              aria-label="Outlets"
+            >
               {outlets.map((outlet, i) => (
                 <button
                   key={outlet.id}
@@ -118,23 +114,27 @@ export function LaundromatSection() {
                   type="button"
                   aria-selected={outlet.id === activeId}
                   onClick={() => setActiveId(outlet.id)}
-                  className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-bold transition-colors ${
+                  className={`shrink-0 rounded-xl px-4 py-2.5 text-left text-sm font-bold transition-colors lg:w-full ${
                     outlet.id === activeId ? 'bg-ink text-white' : 'bg-slate-100 text-ink-soft hover:bg-slate-200'
                   }`}
                 >
                   <span className="mr-2 text-brand-400">{i + 1}</span>
                   {outlet.name}
                   {distances[outlet.id] !== undefined && (
-                    <span className="ml-2 font-medium opacity-70">{distances[outlet.id].toFixed(1)} km</span>
+                    <span className="ml-2 block font-medium opacity-70 lg:inline">
+                      {distances[outlet.id].toFixed(1)} km
+                    </span>
                   )}
                 </button>
               ))}
             </div>
 
-            <article className="rounded-3xl border border-slate-200 p-5 sm:p-6">
-              <OutletCarousel outlet={active} />
+            <OutletCarousel outlet={active} />
+          </div>
 
-              <div className="mt-5 flex flex-wrap items-start justify-between gap-4">
+          <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_280px]">
+            <div>
+              <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <h3 className="font-display text-xl font-extrabold uppercase tracking-tight text-ink">
                     {active.areaName ?? active.name}
@@ -219,9 +219,20 @@ export function LaundromatSection() {
                 Get directions
                 <ExternalLinkIcon className="h-4 w-4" aria-hidden="true" />
               </a>
-            </article>
+            </div>
+
+            <ClientOnly
+              fallback={<div className="h-64 w-full animate-pulse rounded-2xl border border-slate-200 bg-slate-100 lg:h-full" />}
+            >
+              <OutletMap
+                outlets={outlets}
+                activeId={activeId}
+                onSelect={setActiveId}
+                className="h-64 w-full overflow-hidden rounded-2xl border border-slate-200 lg:h-full lg:min-h-[220px]"
+              />
+            </ClientOnly>
           </div>
-        </div>
+        </article>
 
         <div className="mt-16 grid gap-5 md:grid-cols-3">
           {lifestyleFeatures.map((feature) => (
