@@ -27,12 +27,12 @@ export function Header() {
         scrolled || open ? 'bg-white/95 backdrop-blur border-b border-slate-200' : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-28 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="flex items-center gap-3">
           <img
             src={LOGO_URL}
             alt="The Good Husband Laundromats & Drycleaners"
-            className="h-12 w-12 rounded-full bg-white object-contain ring-1 ring-black/5"
+            className="h-20 w-20 rounded-full bg-white object-contain ring-1 ring-black/5"
           />
           <span className="hidden sm:block leading-tight">
             <span

@@ -28,21 +28,28 @@ export function ReviewsSection({ reviews, summary }: { reviews: Review[]; summar
               description="Reviews are pulled live from our Google Business profiles across all three outlets — we publish the 4 and 5 star experiences our customers actually leave."
             />
 
-            <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-6">
-              <div className="flex items-center gap-4">
-                <span className="font-display text-5xl font-extrabold text-ink">{summary.rating}</span>
-                <div>
-                  <Stars rating={5} />
-                  <p className="mt-1 text-sm text-ink-muted">{summary.total} Google reviews</p>
+            {reviews.length > 0 && (
+              <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-6">
+                <div className="flex items-center gap-4">
+                  <span className="font-display text-5xl font-extrabold text-ink">{summary.rating}</span>
+                  <div>
+                    <Stars rating={5} />
+                    <p className="mt-1 text-sm text-ink-muted">{summary.total} Google reviews</p>
+                  </div>
                 </div>
+                <p className="mt-6 flex items-center gap-2 text-xs font-semibold text-ink-muted">
+                  <CheckCircle2Icon className="h-4 w-4 text-brand-500" aria-hidden="true" />
+                  Synced from Google Reviews · updated daily
+                </p>
               </div>
-              <p className="mt-6 flex items-center gap-2 text-xs font-semibold text-ink-muted">
-                <CheckCircle2Icon className="h-4 w-4 text-brand-500" aria-hidden="true" />
-                Synced from Google Reviews · updated daily
-              </p>
-            </div>
+            )}
           </div>
 
+          {reviews.length === 0 ? (
+            <p className="rounded-3xl border border-slate-200 bg-white p-6 text-sm text-ink-muted">
+              Unable to get reviews from Google.
+            </p>
+          ) : (
           <ul className="grid gap-4 sm:grid-cols-2">
             {reviews.slice(0, 6).map((review) => (
               <li key={review.id} className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6">
@@ -74,6 +81,7 @@ export function ReviewsSection({ reviews, summary }: { reviews: Review[]; summar
               </li>
             ))}
           </ul>
+          )}
         </div>
         <a
           href="https://www.google.com/maps/search/?api=1&query=The+Good+Husband+Laundromats+Singapore"

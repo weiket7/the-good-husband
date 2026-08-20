@@ -52,6 +52,19 @@ This project uses the Cloudflare Vite plugin (configured in `vite.config.ts`) an
 
 For production env vars, run `wrangler secret put MY_VAR` for each secret listed in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
 
+### Redeploying to the-good-husband.wei-ket.workers.dev
+
+1. Set/update the secret (once, or whenever the key rotates):
+   ```bash
+   npx wrangler secret put GOOGLE_PLACES_API_KEY --name the-good-husband
+   ```
+   Paste the key from `.env.local` when prompted.
+2. Build and deploy:
+   ```bash
+   npm run deploy
+   ```
+3. Verify at https://the-good-husband.wei-ket.workers.dev
+
 KV, D1, R2, and Durable Object bindings are configured in `wrangler.jsonc` — see https://developers.cloudflare.com/workers/wrangler/configuration/.
 
 

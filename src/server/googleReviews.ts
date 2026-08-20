@@ -1,6 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
 import { outlets } from '#/data/outlets'
-import { reviews as fallbackReviews, googleSummary as fallbackSummary } from '#/data/reviews'
 import type { GoogleSummary, Review } from '#/types/content'
 
 const FIELD_MASK = 'rating,userRatingCount,reviews'
@@ -54,7 +53,7 @@ async function fetchPlace(placeId: string, apiKey: string): Promise<PlaceDetails
 
 export const getGoogleReviews = createServerFn().handler(async (): Promise<{ reviews: Review[]; summary: GoogleSummary }> => {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY
-  if (!apiKey) return { reviews: fallbackReviews, summary: fallbackSummary }
+  if (!apiKey) return { reviews: [], summary: { rating: 0, total: 0 } }
 
   try {
     const results = await Promise.all(
@@ -73,15 +72,15 @@ export const getGoogleReviews = createServerFn().handler(async (): Promise<{ rev
         sourceUrl: review.googleMapsUri,
       })),
     )
-    if (reviews.length === 0) return { reviews: fallbackReviews, summary: fallbackSummary }
+    if (reviews.length === 0) return { reviews: [], summary: { rating: 0, total: 0 } }
 
     const total = results.reduce((sum, { data }) => sum + (data.userRatingCount ?? 0), 0)
     const weightedRating = total
       ? results.reduce((sum, { data }) => sum + (data.rating ?? 0) * (data.userRatingCount ?? 0), 0) / total
-      : fallbackSummary.rating
+      : 0
 
     return { reviews, summary: { rating: Math.round(weightedRating * 10) / 10, total } }
   } catch {
-    return { reviews: fallbackReviews, summary: fallbackSummary }
+    return { reviews: [], summary: { rating: 0, total: 0 } }
   }
 })
