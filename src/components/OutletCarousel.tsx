@@ -29,6 +29,18 @@ export function OutletCarousel({ outlet }: { outlet: Outlet }) {
 
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-4">
         <p className="text-sm font-semibold text-white">{current.caption}</p>
+        <div className="mt-3 flex justify-center gap-1.5">
+          {outlet.images.map((image, i) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Go to photo ${i + 1}`}
+              aria-current={i === index}
+              className={`h-1.5 rounded-full transition-all ${i === index ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/75'}`}
+            />
+          ))}
+        </div>
       </div>
 
       <button

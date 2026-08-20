@@ -1,4 +1,4 @@
-export const LOGO_URL = '/THE_GOOD_HUSBAND_LOGO.jpg';
+export const LOGO_URL = '/the-good-husband-logo.png';
 
 export const BRAND = {
   name: 'The Good Husband',

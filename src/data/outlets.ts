@@ -24,7 +24,10 @@ export const outlets: Outlet[] = [
     machines: '8 washers · 6 dryers · up to 18kg loads',
     rating: 4.9,
     reviewCount: 214,
-    amenities: ['Free Wi-Fi', 'F&B vending', 'Massage chairs', 'Wheelchair access'],
+    amenities: ['Free Wi-Fi', 'Helmet and Footwear Deep Cleaning',
+      'Pet Garments Washer and Dryer', 'Soft Floor Rugs Washer and Dryer',
+      'Takeaway Hot Food and Desserts', 'Massage Chairs', 'Claw Machines'
+    ],
     images: KOMO_IMAGES,
     placeId: 'ChIJpWku_X892jERrP6uti9n1Hw',
     staffedCounter: { weekdayHours: '10am – 9pm', weekendHours: '10am – 3pm' },
