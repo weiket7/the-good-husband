@@ -81,9 +81,9 @@ export const outlets: Outlet[] = [
 ];
 
 export const heroImages = [
-  { src: HERO, alt: 'Modern 24/7 laundromat interior at dusk with city skyline view' },
-  { src: OUTLET_A, alt: 'Bright laundromat with large capacity washing machines' },
-  { src: VENDING, alt: 'Row of smart cashless vending machines' },
+  { src: "komo-1.jpg", alt: 'Modern 24/7 laundromat interior at dusk with city skyline view' },
+  { src: "seletar-washers2.jpeg", alt: 'Bright laundromat with large capacity washing machines' },
+  { src: "lim-tua-entrance2.jpeg", alt: 'Row of smart cashless vending machines' },
 ];
 
 export const vendingImage = VENDING;
