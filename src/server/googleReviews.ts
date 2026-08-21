@@ -59,7 +59,10 @@ type GoogleReviewsResult = {
 
 export const getGoogleReviews = createServerFn().handler(async (): Promise<GoogleReviewsResult> => {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY
-  if (!apiKey) return { reviews: [], summary: { rating: 0, total: 0 }, outletSummaries: {} }
+  if (!apiKey) {
+    console.error('getGoogleReviews: GOOGLE_PLACES_API_KEY not set')
+    return { reviews: [], summary: { rating: 0, total: 0 }, outletSummaries: {} }
+  }
 
   try {
     const results = await Promise.all(
@@ -93,7 +96,8 @@ export const getGoogleReviews = createServerFn().handler(async (): Promise<Googl
       : 0
 
     return { reviews, summary: { rating: Math.round(weightedRating * 10) / 10, total }, outletSummaries }
-  } catch {
+  } catch (error) {
+    console.error('getGoogleReviews failed', error)
     return { reviews: [], summary: { rating: 0, total: 0 }, outletSummaries: {} }
   }
 })
