@@ -15,13 +15,13 @@ export const Route = createFileRoute('/')({
 })
 
 function Home() {
-  const { reviews, summary } = Route.useLoaderData()
+  const { reviews, summary, outletSummaries } = Route.useLoaderData()
   return (
     <div className="w-full bg-white">
       <Header />
       <main>
         <Hero />
-        <LaundromatSection />
+        <LaundromatSection outletSummaries={outletSummaries} />
         <DryCleaningSection />
         <ReviewsSection reviews={reviews} summary={summary} />
         <VendingSection />

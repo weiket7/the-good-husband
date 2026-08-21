@@ -51,13 +51,26 @@ async function fetchPlace(placeId: string, apiKey: string): Promise<PlaceDetails
   return data
 }
 
-export const getGoogleReviews = createServerFn().handler(async (): Promise<{ reviews: Review[]; summary: GoogleSummary }> => {
+type GoogleReviewsResult = {
+  reviews: Review[]
+  summary: GoogleSummary
+  outletSummaries: Record<string, GoogleSummary>
+}
+
+export const getGoogleReviews = createServerFn().handler(async (): Promise<GoogleReviewsResult> => {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY
-  if (!apiKey) return { reviews: [], summary: { rating: 0, total: 0 } }
+  if (!apiKey) return { reviews: [], summary: { rating: 0, total: 0 }, outletSummaries: {} }
 
   try {
     const results = await Promise.all(
       outlets.map(async (outlet) => ({ outlet, data: await fetchPlace(outlet.placeId, apiKey) })),
+    )
+
+    const outletSummaries: Record<string, GoogleSummary> = Object.fromEntries(
+      results.map(({ outlet, data }) => [
+        outlet.id,
+        { rating: data.rating ?? 0, total: data.userRatingCount ?? 0 },
+      ]),
     )
 
     const reviews: Review[] = results.flatMap(({ outlet, data }) =>
@@ -72,15 +85,15 @@ export const getGoogleReviews = createServerFn().handler(async (): Promise<{ rev
         sourceUrl: review.googleMapsUri,
       })),
     )
-    if (reviews.length === 0) return { reviews: [], summary: { rating: 0, total: 0 } }
+    if (reviews.length === 0) return { reviews: [], summary: { rating: 0, total: 0 }, outletSummaries }
 
     const total = results.reduce((sum, { data }) => sum + (data.userRatingCount ?? 0), 0)
     const weightedRating = total
       ? results.reduce((sum, { data }) => sum + (data.rating ?? 0) * (data.userRatingCount ?? 0), 0) / total
       : 0
 
-    return { reviews, summary: { rating: Math.round(weightedRating * 10) / 10, total } }
+    return { reviews, summary: { rating: Math.round(weightedRating * 10) / 10, total }, outletSummaries }
   } catch {
-    return { reviews: [], summary: { rating: 0, total: 0 } }
+    return { reviews: [], summary: { rating: 0, total: 0 }, outletSummaries: {} }
   }
 })

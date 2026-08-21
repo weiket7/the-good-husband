@@ -13,6 +13,7 @@ import {
   UserIcon,
 } from 'lucide-react';
 import { outlets } from '#/data/outlets';
+import type { GoogleSummary } from '#/types/content';
 import { OutletMap } from './OutletMap';
 import { OutletCarousel } from './OutletCarousel';
 import { SectionHeading } from './SectionHeading';
@@ -46,12 +47,13 @@ function distanceKm(aLat: number, aLng: number, bLat: number, bLng: number) {
 
 type GeoState = 'idle' | 'locating' | 'located' | 'denied';
 
-export function LaundromatSection() {
+export function LaundromatSection({ outletSummaries }: { outletSummaries: Record<string, GoogleSummary> }) {
   const [activeId, setActiveId] = useState(outlets[0].id);
   const [geoState, setGeoState] = useState<GeoState>('idle');
   const [distances, setDistances] = useState<Record<string, number>>({});
 
   const active = outlets.find((o) => o.id === activeId) ?? outlets[0];
+  const activeSummary = outletSummaries[active.id];
 
   const locate = () => {
     if (!('geolocation' in navigator)) {
@@ -155,8 +157,8 @@ export function LaundromatSection() {
                 </div>
                 <div className="flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1.5">
                   <StarIcon className="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-                  <span className="text-sm font-bold text-ink">{active.rating}</span>
-                  <span className="text-xs text-ink-muted">({active.reviewCount})</span>
+                  <span className="text-sm font-bold text-ink">{activeSummary?.rating ?? active.rating}</span>
+                  <span className="text-xs text-ink-muted">({activeSummary?.total ?? active.reviewCount})</span>
                 </div>
               </div>
 
